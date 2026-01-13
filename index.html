@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeggieFresh - Daily Fresh Vegetables</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="language-switcher">
+            <option value="en">English</option>
+            <option value="hi">हिंदी</option>
+            <option value="kn">ಕನ್ನಡ</option>
+            <option value="mr">मराठी</option>
+        </select>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="assets/logo.png" alt="VeggieFresh">
+                <span data-i18n="logo_text">VeggieFresh</span>
+            </div>
+            
+            <!-- Navigation -->
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#home" data-i18n="home">Home</a></li>
+                    <li><a href="#products" data-i18n="products">Products</a></li>
+                    <li><a href="#subscription" data-i18n="subscription">Subscription</a></li>
+                    <li><a href="#offers" data-i18n="offers">Today's Offers</a></li>
+                    <li><a href="#contact" data-i18n="contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="user-icon" id="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <button class="whatsapp-order-btn" id="whatsapp-order">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-i18n="whatsapp_order">Order on WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <div class="auth-container">
+            <span class="close-auth">&times;</span>
+            <h2 data-i18n="login_title">Login / Sign Up</h2>
+            <div class="auth-tabs">
+                <button class="tab-btn active" data-tab="login" data-i18n="login">Login</button>
+                <button class="tab-btn" data-tab="signup" data-i18n="signup">Sign Up</button>
+            </div>
+            
+            <form id="login-form" class="auth-form active">
+                <input type="tel" id="login-mobile" placeholder="Mobile Number" required>
+                <button type="button" class="send-otp-btn" id="send-login-otp" data-i18n="send_otp">Send OTP</button>
+                
+                <div class="otp-container" id="login-otp-container" style="display: none;">
+                    <input type="text" id="login-otp" placeholder="Enter OTP" maxlength="6">
+                    <small class="otp-timer" id="login-otp-timer">02:00</small>
+                    <button type="submit" data-i18n="verify_otp">Verify OTP</button>
+                </div>
+            </form>
+
+            <form id="signup-form" class="auth-form">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email">
+                <input type="tel" id="signup-mobile" placeholder="Mobile Number" required>
+                <button type="button" class="send-otp-btn" id="send-signup-otp" data-i18n="send_otp">Send OTP</button>
+                
+                <div class="otp-container" id="signup-otp-container" style="display: none;">
+                    <input type="text" id="signup-otp" placeholder="Enter OTP" maxlength="6">
+                    <small class="otp-timer" id="signup-otp-timer">02:00</small>
+                    <button type="submit" data-i18n="signup">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-i18n="hero_title">Fresh Vegetables Delivered Daily to Your Doorstep</h1>
+                <p data-i18n="hero_subtitle">100% Organic • Local Farmers • Free Delivery • COD Available</p>
+                <div class="hero-badges">
+                    <span class="badge fresh-badge" data-i18n="daily_fresh">DAILY FRESH</span>
+                    <span class="badge cod-badge">COD + UPI</span>
+                    <span class="badge delivery-badge" data-i18n="local_delivery">LOCAL DELIVERY</span>
+                </div>
+                <a href="#products" class="btn-primary" data-i18n="shop_now">Shop Now</a>
+            </div>
+            <div class="hero-image">
+                <img src="assets/hero-vegetables.png" alt="Fresh Vegetables">
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 data-i18n="featured_products">Featured Products</h2>
+            <div class="products-filter">
+                <button class="filter-btn active" data-category="all" data-i18n="all">All</button>
+                <button class="filter-btn" data-category="leafy" data-i18n="leafy">Leafy Vegetables</button>
+                <button class="filter-btn" data-category="root" data-i18n="root">Root Vegetables</button>
+                <button class="filter-btn" data-category="fruit" data-i18n="fruit_veg">Fruit Vegetables</button>
+                <button class="filter-btn" data-category="offers" data-i18n="todays_offer">Today's Offer</button>
+            </div>
+            
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Section -->
+    <section class="subscription-section" id="subscription">
+        <div class="container">
+            <h2 data-i18n="subscribe_save">Subscribe & Save 20%</h2>
+            <p data-i18n="subscription_desc">Get fresh vegetables daily/weekly with our subscription plans</p>
+            
+            <div class="subscription-plans">
+                <div class="plan-card">
+                    <h3 data-i18n="daily_plan">Daily Plan</h3>
+                    <div class="price">₹299<span data-i18n="per_week">/week</span></div>
+                    <ul>
+                        <li data-i18n="daily_fresh_delivery">Daily fresh delivery</li>
+                        <li data-i18n="mix_vegetables">Mix vegetables 2kg/day</li>
+                        <li data-i18n="free_delivery">Free delivery</li>
+                        <li data-i18n="priority_support">Priority support</li>
+                    </ul>
+                    <button class="btn-subscribe" data-plan="daily" data-i18n="subscribe_now">Subscribe Now</button>
+                </div>
+                
+                <div class="plan-card popular">
+                    <span class="popular-badge" data-i18n="most_popular">MOST POPULAR</span>
+                    <h3 data-i18n="weekly_plan">Weekly Plan</h3>
+                    <div class="price">₹999<span data-i18n="per_month">/month</span></div>
+                    <ul>
+                        <li data-i18n="weekly_delivery">3 times/week delivery</li>
+                        <li data-i18n="customizable_box">Customizable vegetable box</li>
+                        <li data-i18n="free_delivery">Free delivery</li>
+                        <li data-i18n="extra_bonus">+ ₹100 loyalty points monthly</li>
+                    </ul>
+                    <button class="btn-subscribe" data-plan="weekly" data-i18n="subscribe_now">Subscribe Now</button>
+                </div>
+                
+                <div class="plan-card">
+                    <h3 data-i18n="monthly_plan">Monthly Plan</h3>
+                    <div class="price">₹3499<span data-i18n="per_month">/month</span></div>
+                    <ul>
+                        <li data-i18n="flexible_delivery">Flexible delivery schedule</li>
+                        <li data-i18n="premium_quality">Premium quality vegetables</li>
+                        <li data-i18n="free_delivery">Free delivery</li>
+                        <li data-i18n="recipe_book">Free recipe ebook</li>
+                    </ul>
+                    <button class="btn-subscribe" data-plan="monthly" data-i18n="subscribe_now">Subscribe Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 data-i18n="your_cart">Your Cart</h3>
+            <span class="close-cart">&times;</span>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span data-i18n="subtotal">Subtotal</span>
+                <span id="cart-subtotal">₹0</span>
+            </div>
+            <div class="summary-row">
+                <span data-i18n="delivery">Delivery</span>
+                <span>FREE</span>
+            </div>
+            <div class="summary-row total">
+                <span data-i18n="total">Total</span>
+                <span id="cart-total">₹0</span>
+            </div>
+            <button class="btn-checkout" id="fast-checkout" data-i18n="fast_checkout">Fast Checkout</button>
+            <div class="payment-options">
+                <span data-i18n="pay_with">Pay with:</span>
+                <div class="payment-icons">
+                    <i class="fas fa-money-bill-wave" title="COD"></i>
+                    <i class="fas fa-qrcode" title="UPI"></i>
+                    <i class="fab fa-google-pay"></i>
+                    <i class="fab fa-phonepe"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919876543210?text=Hi,%20I%20want%20to%20order%20vegetables" 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span data-i18n="order_on_whatsapp">Order on WhatsApp</span>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-col">
+                    <h4 data-i18n="contact_us">Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> support@veggiefresh.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span data-i18n="address">Bangalore, Karnataka</span></p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="quick_links">Quick Links</h4>
+                    <a href="#products" data-i18n="products">Products</a>
+                    <a href="#subscription" data-i18n="subscription">Subscription</a>
+                    <a href="#" data-i18n="track_order">Track Order</a>
+                    <a href="#" data-i18n="return_policy">Return Policy</a>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="account">Account</h4>
+                    <a href="#" id="login-link" data-i18n="login_signup">Login / Sign Up</a>
+                    <a href="#" data-i18n="my_orders">My Orders</a>
+                    <a href="#" data-i18n="loyalty_points">Loyalty Points</a>
+                    <a href="#" data-i18n="subscription_plans">Subscription Plans</a>
+                </div>
+                <div class="footer-col">
+                    <h4 data-i18n="download_app">Download App</h4>
+                    <p data-i18n="app_ready">Android App Ready!</p>
+                    <div class="app-download">
+                        <a href="#" class="play-store-btn">
+                            <i class="fab fa-google-play"></i>
+                            <span>Google Play</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 VeggieFresh. <span data-i18n="all_rights_reserved">All rights reserved.</span></p>
+                <p id="loyalty-points-display" style="display: none;">
+                    <span data-i18n="your_points">Your Loyalty Points:</span> 
+                    <span id="user-points">0</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/language.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
